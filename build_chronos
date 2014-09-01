@@ -25,6 +25,7 @@ name=chronos
 version="${version:-9999}"
 use_sudo=false
 repo_dir="chronos-repo"
+patch=""
 
 function main {
   while [[ $# -gt 0 ]]
@@ -32,6 +33,7 @@ function main {
     case "$1" in                                      # Munging globals, beware
       --repo)                   repo="$2"    ; shift 2 ;;
       --version)                version="$2" ; shift 2 ;;
+      --patch)                  patch="$2" ; shift 2 ;;
       --use-sudo)               use_sudo=true; shift 1 ;;
       *)                        err 'Argument error. Please see help.' ;;
     esac
@@ -40,7 +42,7 @@ function main {
 }
 
 function go {
-  #clean
+  clean
   build
   create_installation
   pkg
@@ -197,17 +199,12 @@ function pkg {
 }
 
 function clean {
-  local build_dir="$(pwd -P)/build"
+  local build_dir="$(pwd -P)/toor"
   if [[ -d $build_dir ]]; then
     msg "removing build directory..."
     rm -rf $build_dir
   fi
-  for package in "$this/pkg.deb" "$this/pkg.rpm" "$this/python-mesos.deb"; do
-    if [[ -f $package ]]; then
-      msg "removing old package $package"
-      rm $package
-    fi
-  done
+  rm -f "${this}/*.deb"
 }
 
 function architecture {
@@ -224,6 +221,8 @@ function find_gem_bin {
 
 function deb_ {
   local scripts="${linux%%/*}"
+  local version="${version}${patch}"
+  local pkg="$name"_"$version"_"all".deb
   local opts=( -t deb
                -d 'java7-runtime-headless | java6-runtime-headless'
                -d 'mesos'
@@ -233,7 +232,7 @@ function deb_ {
                --config-files "/etc/default/chronos"
                --config-files "/etc/logrotate.d/chronos"
                 )
-  fpm_ "${opts[@]}" -p "$this"/"${name}-${version}".deb
+  fpm_ "${opts[@]}" -p "$this"/"${pkg}"
 }
 
 function rpm_ {
