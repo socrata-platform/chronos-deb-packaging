@@ -5,6 +5,10 @@
 ```
 $ ./build_chronos --version 2.2.0
 ```
+optionally you can specify patch version
+```
+$ ./build_chronos --version 2.2.0 --patch "~p1"
+```
 
 ## Requirements for building package
 
