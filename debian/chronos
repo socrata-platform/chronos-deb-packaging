@@ -1,0 +1,5 @@
+#!/bin/bash
+MESOS_NATIVE_LIBRARY="/usr/local/lib/libmesos.so"
+CHRONOS_HOME="/opt/chronos"
+MESOS_HOME="/usr/local/var/mesos"
+
