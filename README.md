@@ -1,5 +1,10 @@
 # Chronos Debian Packaging
 
+## Usage
+
+```
+$ ./build_chronos --version 2.2.0
+```
 
 ## Requirements for building package
 
