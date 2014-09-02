@@ -11,6 +11,7 @@ args=()
   [[ ! -f /etc/default/chronos ]]        || . /etc/default/chronos
   [[ ! ${ULIMIT:-} ]]    || ulimit $ULIMIT
   [[ ! ${ZK_PATH:-} ]]   || args+=( --zk_path $ZK_PATH )
+  [[ ! ${ZK_HOSTS:-} ]]  || args+=( --zk_hosts $ZK_HOSTS )
   [[ ! ${MASTER:-} ]]    || args+=( --master $MASTER )
   [[ ! ${HOSTNAME:-} ]]  || args+=( --hostname $HOSTNAME )
   [[ ! ${PORT:-} ]]      || args+=( --http_port $PORT )
