@@ -168,7 +168,6 @@ function init_scripts {
 }
 
 function jars {
-  mkdir -p usr/share/java/
   # we don't want copy java docs..
   local jarfile="$(ls $repodir/target/chronos-*.jar)"
   if [[ -f "$jarfile" ]]; then
