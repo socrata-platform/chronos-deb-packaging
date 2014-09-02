@@ -136,8 +136,9 @@ function create_installation {(
   mkdir -p toor
   debroot="${pwd}/toor"
   cd ${debroot}
-  mkdir -p var/log/chronos etc/default
-  cp "$this"/debian/chronos     etc/default/
+  mkdir -p var/log/chronos etc/default opt/chronos/lib opt/chronos/bin
+  cp "$this"/debian/default        etc/default/chronos
+  cp "$this"/debian/chronos.bash   opt/chronos/bin
   init_scripts "$linux"
   logrotate
   jars
@@ -171,7 +172,7 @@ function jars {
   # we don't want copy java docs..
   local jarfile="$(ls $repodir/target/chronos-*.jar)"
   if [[ -f "$jarfile" ]]; then
-    cp "$jarfile" usr/share/java/
+    cp "$jarfile" opt/chronos/lib
   else
     err "${jarfile} was not found"
   fi
