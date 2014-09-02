@@ -138,7 +138,7 @@ function create_installation {(
   cd ${debroot}
   mkdir -p var/log/chronos etc/default opt/chronos/lib opt/chronos/bin
   cp "$this"/debian/default        etc/default/chronos
-  cp "$this"/debian/chronos.bash   opt/chronos/bin
+  cp "$this"/debian/chronos.bash   opt/chronos/bin/chronos
   init_scripts "$linux"
   logrotate
   jars

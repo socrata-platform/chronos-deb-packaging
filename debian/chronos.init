@@ -27,7 +27,7 @@
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 DESC="chronos daemon"
 NAME=chronos
-DAEMON=/usr/bin/java
+DAEMON=/opt/chronos/bin/chronos
 PIDFILE=/var/run/${NAME}.pid
 SCRIPTNAME=$0
 LOG_DIR="/var/log/chronos"
@@ -43,33 +43,11 @@ fi
 
 . /lib/lsb/init-functions
 
-set_environment() {
-  local args=()
-  [[ ! -f /etc/default/chronos ]]        || . /etc/default/chronos
-  [[ ! ${ULIMIT:-} ]]    || ulimit $ULIMIT
-  [[ ! ${ZK_PATH:-} ]]   || args+=( --zk_path $ZK_PATH )
-  [[ ! ${MASTER:-} ]]    || args+=( --master $MASTER )
-  [[ ! ${HOSTNAME:-} ]]  || args+=( --hostname $HOSTNAME )
-  [[ ! ${PORT:-} ]]      || args+=( --http_port $PORT )
-  [[ ! ${USER-} ]]       || args+=( --user $USER )
-  [[ ! ${CPU-} ]]        || args+=( --mesos_task_cpu $CPU )
-  [[ ! ${MEM-} ]]        || args+=( --mesos_task_mem $MEM )
-  [[ ! ${DISK-} ]]       || args+=( --mesos_task_disk $DISK )
-  [[ ! ${ROLE-} ]]       || args+=( --mesos_role $ROLE )
-  [[ ! ${FW_NAME-} ]]    || args+=( --mesos_framework_name $FW_NAME )
-  [[ ! ${OPTS-} ]]       || args+=( ${OPTS} )
-
-  EXTRA_OPTS="${args[@]}"
-  echo "Starting chronos: $DAEMON ${EXTRA_OPTS}" >> $LOG_DIR/chronos.log
-}
-
 case "$1" in
   start)
-    set_environment
     log_daemon_msg "Starting periodic command scheduler" "chronos"
-    ### example starting chronos from command line
-    ### java -cp $chronos_jar_file com.airbnb.scheduler.Main server "$CHRONOS_HOME"/config/local_scheduler_nozk.yml
-    ### example startin chronos with start_daemon
+    echo "$DAEMON $EXTRA_OPTS"
+    echo "[$(date)] Starting chronos: $DAEMON" >> $LOG_DIR/chronos.log
     start-stop-daemon --start --quiet --background \
         --pidfile $PIDFILE --make-pidfile \
         --startas /bin/bash -- -c "exec $DAEMON ${EXTRA_OPTS} >> $LOG_DIR/chronos.log 2>&1"
