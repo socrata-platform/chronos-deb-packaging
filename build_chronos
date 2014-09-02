@@ -204,7 +204,8 @@ function clean {
     msg "removing build directory..."
     rm -rf $build_dir
   fi
-  rm -f "${this}/*.deb"
+  msg "removing old deb packages"
+  find $this -name "*.deb" -exec rm -rf {} \;
 }
 
 function architecture {
