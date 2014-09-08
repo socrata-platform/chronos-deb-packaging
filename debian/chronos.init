@@ -8,7 +8,7 @@
 # Should-Start:      $network $named slapd autofs ypbind nscd nslcd
 # Should-Stop:       $network $named slapd autofs ypbind nscd nslcd
 # Default-Start:     2 3 4 5
-# Default-Stop:
+# Default-Stop:      0 1 6
 # Short-Description: chronos is airbnb's replacement for cron.
 # Description:       chronos is a distributed and fault-tolerant scheduler
 #                    which runs on top of mesos. It's a framework and supports
