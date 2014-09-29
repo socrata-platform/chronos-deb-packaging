@@ -1,0 +1,22 @@
+description "chronos"
+
+# Start just after the System-V jobs (rc) to ensure networking and ZooKeeper
+# are started. This is as simple as possible to ensure compatibility with
+# Ubuntu, Debian, CentOS, and RHEL distros. See:
+# http://upstart.ubuntu.com/cookbook/#standard-idioms
+start on stopped rc RUNLEVEL=[2345]
+respawn
+
+script
+    DAEMON="/opt/chronos/bin/chronos"
+    NAME="chronos"
+    PID="/var/run/${NAME}.pid"
+    LOG_DIR="/var/log/chronos"
+    EXTRA_OPTS=""
+    
+    [ -r /etc/default/chronos ] && . /etc/default/chronos
+    
+    exec start-stop-daemon --start --make-pidfile --name $NAME \
+        --pidfile $PID --startas /bin/bash -- -c "exec $DAEMON ${EXTRA_OPTS} >> $LOG_DIR/chronos.log 2>&1"
+end script
+
