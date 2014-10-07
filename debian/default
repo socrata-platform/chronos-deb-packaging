@@ -2,6 +2,7 @@
 CHRONOS_HOME="/opt/chronos"
 MESOS_HOME="/usr/share/java"
 MESOS_LIB="/usr/local/lib/libmesos.so"
+export JAVA_LIBPATH="/usr/local/lib"
 
 # Chronos environment settings for start up
 # Uncomment to customize your settings
