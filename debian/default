@@ -6,6 +6,13 @@ MESOS_LIB="/usr/local/lib/libmesos.so"
 # Chronos environment settings for start up
 # Uncomment to customize your settings
 
+# bind Chronos to specific port, otherwise random
+# port between 30000-60000 is choosen
+#export LIBPROCESS_PORT=5070
+
+# change default log dir
+#LOG_DIR="/var/log/chronos"
+
 # Chronos storage
 ZK_HOSTS="$(cat /etc/mesos/zk)"
 #ZK_PATH=/chronos/state

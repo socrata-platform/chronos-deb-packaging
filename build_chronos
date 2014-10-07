@@ -230,7 +230,6 @@ function deb_ {
                --after-install "$this/control/postinst"
                --before-remove "$this/control/prerm"
                --config-files "/etc/default/chronos"
-               --config-files "/etc/default/chronos"
                --config-files "/etc/logrotate.d/chronos"
                 )
   fpm_ "${opts[@]}" -p "$this"/"${pkg}"
