@@ -56,7 +56,7 @@ function maybe_append_git_hash {
   fi
 }
 
-repo=https://github.com/airbnb/chronos.git
+repo=https://github.com/mesos/chronos.git
 function checkout {
   local url=( $(url_split "$repo") )
   local repository="${url[0]}"
