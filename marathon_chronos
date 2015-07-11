@@ -153,8 +153,9 @@ function create_installation {(
 function jars {
   # we don't want copy java docs..
   local jarfile="$(ls $repodir/target/chronos-*.jar)"
+  mkdir target
   if [[ -f "$jarfile" ]]; then
-    cp "$jarfile" .
+    cp "$jarfile" "target/"
   else
     err "${jarfile} was not found"
   fi
