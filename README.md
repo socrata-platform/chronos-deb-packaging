@@ -10,6 +10,11 @@ optionally you can specify patch version
 $ ./build_chronos --version 2.2.0 --patch "-p1"
 ```
 
+create tar archive for running on Marathon:
+```
+./marathon_chronos --version 2.3.4
+```
+
 ## Requirements for building package
 
   * Java
