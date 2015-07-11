@@ -1,3 +1,4 @@
 chronos-repo/*
 *.deb
 *.tar.gz
+Makefile
