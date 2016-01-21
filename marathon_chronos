@@ -1,5 +1,6 @@
 #!/bin/bash
 set -o errexit -o nounset -o pipefail
+set -x
 export LC_ALL=C
 function -h {
 cat <<USAGE
@@ -74,8 +75,13 @@ function checkout {
     msg "Cloning: $repository at $ref" && git clone "$repository" $repo_dir && cd $repo_dir
   fi
   repodir="${this}/$repo_dir"
-  msg "git checkout -f $ref"
-  ( ( [[ ! ${ref:-} ]] || git fetch --tags && git checkout -f "$ref" ) && "$@" )
+  if [[ "$version" == 9999 ]]; then
+    msg "git checkout -f $ref"
+    ( ( [[ ! ${ref:-} ]] || git fetch --tags && git checkout -f "$ref" ) && "$@" )
+  else
+    git checkout tags/$version
+    ( ( git checkout tags/$version ) && "$@" )
+  fi
 }
 
 function build {(

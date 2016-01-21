@@ -201,6 +201,7 @@ function pkg {
 }
 
 function clean {
+  mvn clean
   local build_dir="$(pwd -P)/toor"
   if [[ -d $build_dir ]]; then
     msg "removing build directory..."
