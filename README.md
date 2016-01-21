@@ -2,6 +2,8 @@
 
 ## Usage
 
+Check lastest release at [Chronos page](https://github.com/mesos/chronos/releases). Chronos could be easily run on Marathon (3rd option).
+
 ```
 $ ./build_chronos --version 2.2.0
 ```
