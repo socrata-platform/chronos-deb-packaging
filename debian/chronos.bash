@@ -60,7 +60,7 @@ JAVA_OPTS="$JAVA_OPTS -Djava.library.path=${JAVA_LIBPATH:-/usr/lib/} -cp $chrono
 ##-============================================================================
 
 echo -e "Launch Chronos"
-CMD="java $JAVA_OPTS com.airbnb.scheduler.Main $EXTRA_OPTS $@" 
+CMD="java $JAVA_OPTS org.apache.mesos.chronos.scheduler.Main $EXTRA_OPTS $@" 
 echo -e "cmd: $CMD"
 exec $CMD
 
