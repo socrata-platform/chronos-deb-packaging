@@ -234,6 +234,7 @@ function deb_ {
                --before-remove "$this/control/prerm"
                --config-files "/etc/default/chronos"
                --config-files "/etc/logrotate.d/chronos"
+               --deb-init "$this/debian/chronos.init"
                 )
   fpm_ "${opts[@]}" -p "$this"/"${pkg}"
 }
