@@ -90,6 +90,7 @@ function os_release {
     ( source /etc/os-release && display_version "$ID" "$VERSION_ID" )
     return 0
   fi
+  msg "Trying /etc/lsb-release..."
   if [[ -f /etc/lsb-release ]]
   then
       (source /etc/lsb-release && display_version "$DISTRIB_ID" "$DISTRIB_RELEASE" )
