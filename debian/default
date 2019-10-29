@@ -15,16 +15,16 @@ export JAVA_LIBPATH="/usr/local/lib"
 #LOG_DIR="/var/log/chronos"
 
 # Chronos storage
-ZK_HOSTS="$(cat /etc/mesos/zk)"
+#ZK_HOSTS="$(cat /etc/mesos/zk)"
 #ZK_PATH=/chronos/state
 
 # Chronos UI and declaration
 #HOSTNAME=localhost
-PORT=8080
+#PORT=8080
 
 # Mesos requirement
 #MASTER=zk://localhost:2181/mesos
-MASTER="$(cat /etc/mesos/zk)"
+#MASTER="$(cat /etc/mesos/zk)"
 #USER=root
 #CPU=0.1
 #MEM=128
